@@ -1,12 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace _3DGraph
@@ -17,10 +10,10 @@ namespace _3DGraph
         {
             InitializeComponent();
         }
-
-
-
+        string f;
         public Func<Dictionary<string, double>, double> func;
+        //public Func<double, double, double> points;
+
         private void CalculateButton_Click(object sender, EventArgs e)
         {
 
@@ -37,51 +30,38 @@ namespace _3DGraph
             if ((Convert.ToDouble(XMaxNumeric.Value) - Convert.ToDouble(XMinNumeric.Value)) / Convert.ToDouble(DeltaXNumeric.Value) * (Convert.ToDouble(XMaxNumeric.Value) - Convert.ToDouble(XMinNumeric.Value)) / Convert.ToDouble(DeltaXNumeric.Value) > 1000)
             {
                 if (MessageBox.Show("Вы выбрали маленькое значение шага. Большое количество вычислений может занять больше времени. Уверены, что хотите продолжить?", "Внимание", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
- 
                     Calculate();
-                }
             }
             else
-            {
                 Calculate();
-
-            }
         }
 
-
-
-            public void Calculate()
+        public void Calculate()
         {
-      
-
             int currentY, currentX = 0;
             var calc = new Sprache.Calc.XtensibleCalculator();
             try
             {
-
                 label10.Visible = true;
                 //Переменные если первый цикл и если Х есть в выражении
                 bool FirstCycleFlag = true;
                 bool isXExist = true;
+
                 if (!FunctionTextbox.Text.ToUpper().Contains("X") && !FunctionTextbox.Text.ToUpper().Contains("Y"))
                 {
                     var expr = calc.ParseExpression(ParseString(FunctionTextbox.Text));
                     var func = expr.Compile();
                     double Point = Math.Round(func(), 2);
+
                     ValuesOfFunction.Columns.Add("X", "X");
                     ValuesOfFunction.Rows.Add();
                     ValuesOfFunction.Rows[0].Cells[0].Value = Point;
                     ValuesOfFunction.Rows[0].HeaderCell.Value = ("Y");
-
-
                 }
                 else
                     for (double x = Convert.ToDouble(XMinNumeric.Value); x <= Convert.ToDouble(XMaxNumeric.Value); x += Convert.ToDouble(DeltaXNumeric.Value))
                     {
                         //Если чисто выражение
-
-
                         currentY = 0;
                         x = Math.Round(x, 2);
 
@@ -90,7 +70,6 @@ namespace _3DGraph
                         {
                             ValuesOfFunction.Columns.Add("X", "X");
                             isXExist = false;
-                            
                         }
                         if (isXExist)
                             ValuesOfFunction.Columns.Add(x.ToString(), x.ToString());
@@ -98,11 +77,12 @@ namespace _3DGraph
                         for (double y = Convert.ToDouble(YMinNumeric.Value); y <= Convert.ToDouble(YMaxNumeric.Value); y += Convert.ToDouble(DeltaYNumeric.Value))
                         {
                             y = Math.Round(y, 2);
-
+                            f = FunctionTextbox.Text;
                             //Расчет функции
                             var expr = calc.ParseExpression(ParseString(FunctionTextbox.Text), X => x, Y => y);
                             var func = expr.Compile();
                             double Point = Math.Round(func(), 2);
+                            
 
                             //Если функция содержит У и это первый цикл (проверка первого цикла нужна чтоб он не добавлял кучу строк пустых), то добавляет столько строк, сколько нужно
                             if (FirstCycleFlag && FunctionTextbox.Text.ToUpper().Contains("Y"))
@@ -129,9 +109,11 @@ namespace _3DGraph
                             else
                                 ValuesOfFunction.Rows[currentY].HeaderCell.Value = "Y";
                            
-                            
                             if (FunctionTextbox.Text.ToUpper().Contains("Y"))
                                 currentY++;
+
+                            if (x == Convert.ToDouble(XMaxNumeric.Value))
+                                button1.Enabled = true;
            
                         }
                         FirstCycleFlag = false;
@@ -141,8 +123,6 @@ namespace _3DGraph
             }
             catch (Sprache.ParseException)
             {
-
-
                 ValuesOfFunction.Rows.Clear();
                 ValuesOfFunction.Columns.Clear();
                 label10.Visible = false;
@@ -151,7 +131,6 @@ namespace _3DGraph
             }
             catch (KeyNotFoundException)
             {
-
                 ValuesOfFunction.Rows.Clear();
                 ValuesOfFunction.Columns.Clear();
                 label10.Visible = false;
@@ -160,7 +139,6 @@ namespace _3DGraph
             }
             catch (Exception ex)
             {
-
                 ValuesOfFunction.Rows.Clear();
                 ValuesOfFunction.Columns.Clear();
                 label10.Visible = false;
@@ -196,6 +174,21 @@ namespace _3DGraph
         private void CloseButton_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var calc = new Sprache.Calc.XtensibleCalculator();
+            double minX = Convert.ToDouble(XMinNumeric.Value);
+            double maxX = Convert.ToDouble(XMaxNumeric.Value);
+            double minY = Convert.ToDouble(YMinNumeric.Value);
+            double maxY = Convert.ToDouble(YMaxNumeric.Value);
+            double stepX = Convert.ToDouble(DeltaXNumeric.Value);
+            double stepY = Convert.ToDouble(DeltaYNumeric.Value);
+
+            new Chart3DForm(f, minX, maxX, minY, maxY, stepX, stepY, calc).ShowDialog();
+            button1.Enabled = false;
         }
     }
 }

@@ -33,6 +33,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="OpenControls.Wpf.Serialisation">
+      <HintPath>..\packages\3D\OpenControls.Wpf.Serialisation.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenControls.Wpf.SurfacePlot">
+      <HintPath>..\packages\3D\OpenControls.Wpf.SurfacePlot.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenControls.Wpf.Utilities">
+      <HintPath>..\packages\3D\OpenControls.Wpf.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK">
+      <HintPath>..\packages\3D\OpenTK.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK.GLControl">
+      <HintPath>..\packages\3D\OpenTK.GLControl.dll</HintPath>
+    </Reference>
     <Reference Include="Sprache, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Sprache.2.2.0\lib\net45\Sprache.dll</HintPath>
     </Reference>
@@ -41,6 +56,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,6 +68,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Chart3DForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Chart3DForm.Designer.cs">
+      <DependentUpon>Chart3DForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DragControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -63,6 +85,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Chart3DForm.resx">
+      <DependentUpon>Chart3DForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
