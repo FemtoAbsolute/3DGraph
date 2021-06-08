@@ -29,15 +29,20 @@ namespace _3DGraph
         /// </summary>
         private void InitializeComponent()
         {
-            this.CalculateButton = new System.Windows.Forms.Button();
-            this.FunctionTextbox = new System.Windows.Forms.TextBox();
-            this.Tabs = new System.Windows.Forms.TabControl();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.CloseButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.CollapseButton = new System.Windows.Forms.Button();
+            this.DocumentTabs = new System.Windows.Forms.TabPage();
+            this.label9 = new System.Windows.Forms.Label();
             this.FirstTab = new System.Windows.Forms.TabPage();
             this.label10 = new System.Windows.Forms.Label();
             this.ValuesOfFunction = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.CalculateButton = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.DeltaYNumeric = new System.Windows.Forms.NumericUpDown();
@@ -48,16 +53,13 @@ namespace _3DGraph
             this.YMinNumeric = new System.Windows.Forms.NumericUpDown();
             this.XMinNumeric = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
+            this.FunctionTextbox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.SecondTab = new System.Windows.Forms.TabPage();
-            this.DocumentTabs = new System.Windows.Forms.TabPage();
-            this.label9 = new System.Windows.Forms.Label();
+            this.Tabs = new System.Windows.Forms.TabControl();
+            this.button1 = new System.Windows.Forms.Button();
             this.DragControl = new _3DGraph.DragControl();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.CloseButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.CollapseButton = new System.Windows.Forms.Button();
-            this.Tabs.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.DocumentTabs.SuspendLayout();
             this.FirstTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ValuesOfFunction)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -67,43 +69,84 @@ namespace _3DGraph
             ((System.ComponentModel.ISupportInitialize)(this.XMaxNumeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.YMinNumeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.XMinNumeric)).BeginInit();
-            this.DocumentTabs.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.Tabs.SuspendLayout();
             this.SuspendLayout();
             // 
-            // CalculateButton
+            // panel1
             // 
-            this.CalculateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.CalculateButton.Location = new System.Drawing.Point(165, 151);
-            this.CalculateButton.Name = "CalculateButton";
-            this.CalculateButton.Size = new System.Drawing.Size(482, 34);
-            this.CalculateButton.TabIndex = 1;
-            this.CalculateButton.Text = "Рассчитать";
-            this.CalculateButton.UseVisualStyleBackColor = false;
-            this.CalculateButton.Click += new System.EventHandler(this.CalculateButton_Click);
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(33)))), ((int)(((byte)(64)))));
+            this.panel1.Controls.Add(this.CloseButton);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.CollapseButton);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(842, 33);
+            this.panel1.TabIndex = 68;
             // 
-            // FunctionTextbox
+            // CloseButton
             // 
-            this.FunctionTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.FunctionTextbox.Location = new System.Drawing.Point(116, 34);
-            this.FunctionTextbox.Name = "FunctionTextbox";
-            this.FunctionTextbox.Size = new System.Drawing.Size(633, 31);
-            this.FunctionTextbox.TabIndex = 0;
+            this.CloseButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(33)))), ((int)(((byte)(64)))));
+            this.CloseButton.BackgroundImage = global::_3DGraph.Properties.Resources.exit;
+            this.CloseButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.CloseButton.FlatAppearance.BorderSize = 0;
+            this.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CloseButton.ForeColor = System.Drawing.SystemColors.Control;
+            this.CloseButton.Location = new System.Drawing.Point(810, 4);
+            this.CloseButton.Name = "CloseButton";
+            this.CloseButton.Size = new System.Drawing.Size(29, 25);
+            this.CloseButton.TabIndex = 62;
+            this.CloseButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.CloseButton.UseVisualStyleBackColor = false;
+            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
-            // Tabs
+            // label1
             // 
-            this.Tabs.Controls.Add(this.FirstTab);
-            this.Tabs.Controls.Add(this.SecondTab);
-            this.Tabs.Controls.Add(this.DocumentTabs);
-            this.Tabs.Cursor = System.Windows.Forms.Cursors.Default;
-            this.Tabs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Tabs.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Tabs.Location = new System.Drawing.Point(0, 33);
-            this.Tabs.Name = "Tabs";
-            this.Tabs.SelectedIndex = 0;
-            this.Tabs.ShowToolTips = true;
-            this.Tabs.Size = new System.Drawing.Size(842, 548);
-            this.Tabs.TabIndex = 70;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label1.Location = new System.Drawing.Point(12, 4);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(182, 24);
+            this.label1.TabIndex = 66;
+            this.label1.Text = "Добро пожаловать";
+            // 
+            // CollapseButton
+            // 
+            this.CollapseButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(33)))), ((int)(((byte)(64)))));
+            this.CollapseButton.BackgroundImage = global::_3DGraph.Properties.Resources.collapse;
+            this.CollapseButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.CollapseButton.FlatAppearance.BorderSize = 0;
+            this.CollapseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CollapseButton.ForeColor = System.Drawing.SystemColors.Control;
+            this.CollapseButton.Location = new System.Drawing.Point(775, 4);
+            this.CollapseButton.Name = "CollapseButton";
+            this.CollapseButton.Size = new System.Drawing.Size(29, 25);
+            this.CollapseButton.TabIndex = 63;
+            this.CollapseButton.UseVisualStyleBackColor = false;
+            this.CollapseButton.Click += new System.EventHandler(this.CollapseButton_Click);
+            // 
+            // DocumentTabs
+            // 
+            this.DocumentTabs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(41)))), ((int)(((byte)(71)))));
+            this.DocumentTabs.Controls.Add(this.label9);
+            this.DocumentTabs.Location = new System.Drawing.Point(4, 29);
+            this.DocumentTabs.Name = "DocumentTabs";
+            this.DocumentTabs.Padding = new System.Windows.Forms.Padding(3);
+            this.DocumentTabs.Size = new System.Drawing.Size(834, 515);
+            this.DocumentTabs.TabIndex = 2;
+            this.DocumentTabs.Text = "Документация";
+            // 
+            // label9
+            // 
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label9.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label9.Location = new System.Drawing.Point(6, 13);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(820, 497);
+            this.label9.TabIndex = 0;
+            this.label9.Text = resources.GetString("label9.Text");
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FirstTab
             // 
@@ -150,6 +193,7 @@ namespace _3DGraph
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.CalculateButton);
@@ -192,6 +236,17 @@ namespace _3DGraph
             this.label5.Size = new System.Drawing.Size(75, 24);
             this.label5.TabIndex = 10;
             this.label5.Text = "Y(Max):";
+            // 
+            // CalculateButton
+            // 
+            this.CalculateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.CalculateButton.Location = new System.Drawing.Point(10, 146);
+            this.CalculateButton.Name = "CalculateButton";
+            this.CalculateButton.Size = new System.Drawing.Size(414, 34);
+            this.CalculateButton.TabIndex = 1;
+            this.CalculateButton.Text = "Рассчитать";
+            this.CalculateButton.UseVisualStyleBackColor = false;
+            this.CalculateButton.Click += new System.EventHandler(this.CalculateButton_Click);
             // 
             // label6
             // 
@@ -397,6 +452,14 @@ namespace _3DGraph
             this.label3.TabIndex = 3;
             this.label3.Text = "X(Min):";
             // 
+            // FunctionTextbox
+            // 
+            this.FunctionTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.FunctionTextbox.Location = new System.Drawing.Point(116, 34);
+            this.FunctionTextbox.Name = "FunctionTextbox";
+            this.FunctionTextbox.Size = new System.Drawing.Size(633, 31);
+            this.FunctionTextbox.TabIndex = 0;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -407,94 +470,35 @@ namespace _3DGraph
             this.label2.TabIndex = 2;
             this.label2.Text = "Z = f(X,Y) =";
             // 
-            // SecondTab
+            // Tabs
             // 
-            this.SecondTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(41)))), ((int)(((byte)(71)))));
-            this.SecondTab.Location = new System.Drawing.Point(4, 29);
-            this.SecondTab.Name = "SecondTab";
-            this.SecondTab.Padding = new System.Windows.Forms.Padding(3);
-            this.SecondTab.Size = new System.Drawing.Size(834, 515);
-            this.SecondTab.TabIndex = 0;
-            this.SecondTab.Text = "3D-график";
+            this.Tabs.Controls.Add(this.FirstTab);
+            this.Tabs.Controls.Add(this.DocumentTabs);
+            this.Tabs.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Tabs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Tabs.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Tabs.Location = new System.Drawing.Point(0, 33);
+            this.Tabs.Name = "Tabs";
+            this.Tabs.SelectedIndex = 0;
+            this.Tabs.ShowToolTips = true;
+            this.Tabs.Size = new System.Drawing.Size(842, 548);
+            this.Tabs.TabIndex = 70;
             // 
-            // DocumentTabs
+            // button1
             // 
-            this.DocumentTabs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(41)))), ((int)(((byte)(71)))));
-            this.DocumentTabs.Controls.Add(this.label9);
-            this.DocumentTabs.Location = new System.Drawing.Point(4, 29);
-            this.DocumentTabs.Name = "DocumentTabs";
-            this.DocumentTabs.Padding = new System.Windows.Forms.Padding(3);
-            this.DocumentTabs.Size = new System.Drawing.Size(834, 515);
-            this.DocumentTabs.TabIndex = 2;
-            this.DocumentTabs.Text = "Документация";
-            // 
-            // label9
-            // 
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label9.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label9.Location = new System.Drawing.Point(6, 13);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(820, 497);
-            this.label9.TabIndex = 0;
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.button1.Enabled = false;
+            this.button1.Location = new System.Drawing.Point(430, 146);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(380, 34);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Построить график";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // DragControl
             // 
             this.DragControl.selectControl = this.panel1;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(33)))), ((int)(((byte)(64)))));
-            this.panel1.Controls.Add(this.CloseButton);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.CollapseButton);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(842, 33);
-            this.panel1.TabIndex = 68;
-            // 
-            // CloseButton
-            // 
-            this.CloseButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(33)))), ((int)(((byte)(64)))));
-            this.CloseButton.BackgroundImage = global::_3DGraph.Properties.Resources.exit;
-            this.CloseButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.CloseButton.FlatAppearance.BorderSize = 0;
-            this.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CloseButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.CloseButton.Location = new System.Drawing.Point(810, 4);
-            this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(29, 25);
-            this.CloseButton.TabIndex = 62;
-            this.CloseButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.CloseButton.UseVisualStyleBackColor = false;
-            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(12, 4);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(182, 24);
-            this.label1.TabIndex = 66;
-            this.label1.Text = "Добро пожаловать";
-            // 
-            // CollapseButton
-            // 
-            this.CollapseButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(33)))), ((int)(((byte)(64)))));
-            this.CollapseButton.BackgroundImage = global::_3DGraph.Properties.Resources.collapse;
-            this.CollapseButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.CollapseButton.FlatAppearance.BorderSize = 0;
-            this.CollapseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CollapseButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.CollapseButton.Location = new System.Drawing.Point(775, 4);
-            this.CollapseButton.Name = "CollapseButton";
-            this.CollapseButton.Size = new System.Drawing.Size(29, 25);
-            this.CollapseButton.TabIndex = 63;
-            this.CollapseButton.UseVisualStyleBackColor = false;
-            this.CollapseButton.Click += new System.EventHandler(this.CollapseButton_Click);
             // 
             // Form1
             // 
@@ -507,7 +511,9 @@ namespace _3DGraph
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
-            this.Tabs.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.DocumentTabs.ResumeLayout(false);
             this.FirstTab.ResumeLayout(false);
             this.FirstTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ValuesOfFunction)).EndInit();
@@ -519,24 +525,26 @@ namespace _3DGraph
             ((System.ComponentModel.ISupportInitialize)(this.XMaxNumeric)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.YMinNumeric)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.XMinNumeric)).EndInit();
-            this.DocumentTabs.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.Tabs.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.Button CalculateButton;
-        private System.Windows.Forms.TextBox FunctionTextbox;
-        private System.Windows.Forms.TabControl Tabs;
-        private System.Windows.Forms.TabPage FirstTab;
-        private System.Windows.Forms.TabPage SecondTab;
         private DragControl DragControl;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button CloseButton;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button CollapseButton;
+        private System.Windows.Forms.TabPage DocumentTabs;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TabPage FirstTab;
+        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DataGridView ValuesOfFunction;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button CalculateButton;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.NumericUpDown DeltaYNumeric;
@@ -547,14 +555,10 @@ namespace _3DGraph
         private System.Windows.Forms.NumericUpDown YMinNumeric;
         private System.Windows.Forms.NumericUpDown XMinNumeric;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox FunctionTextbox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TabPage DocumentTabs;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button CloseButton;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button CollapseButton;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TabControl Tabs;
+        private System.Windows.Forms.Button button1;
     }
 }
 
