@@ -112,17 +112,20 @@ namespace _3DGraph
                             if (FunctionTextbox.Text.ToUpper().Contains("Y"))
                                 currentY++;
 
-                            if (x == Convert.ToDouble(XMaxNumeric.Value))
-                                button1.Enabled = true;
+                          
+                               
            
                         }
                         FirstCycleFlag = false;
                         if (isXExist)
                             currentX++;
                     }
+                if (FunctionTextbox.Text.ToUpper().Contains("X") && FunctionTextbox.Text.ToUpper().Contains("Y"))
+                button1.Enabled = true;
             }
             catch (Sprache.ParseException)
             {
+                button1.Enabled = false;
                 ValuesOfFunction.Rows.Clear();
                 ValuesOfFunction.Columns.Clear();
                 label10.Visible = false;
@@ -131,6 +134,7 @@ namespace _3DGraph
             }
             catch (KeyNotFoundException)
             {
+                button1.Enabled = false;
                 ValuesOfFunction.Rows.Clear();
                 ValuesOfFunction.Columns.Clear();
                 label10.Visible = false;
@@ -139,6 +143,7 @@ namespace _3DGraph
             }
             catch (Exception ex)
             {
+                button1.Enabled = false;
                 ValuesOfFunction.Rows.Clear();
                 ValuesOfFunction.Columns.Clear();
                 label10.Visible = false;
@@ -186,9 +191,15 @@ namespace _3DGraph
             double maxY = Convert.ToDouble(YMaxNumeric.Value);
             double stepX = Convert.ToDouble(DeltaXNumeric.Value);
             double stepY = Convert.ToDouble(DeltaYNumeric.Value);
-
-            new Chart3DForm(f, minX, maxX, minY, maxY, stepX, stepY, calc).ShowDialog();
-            button1.Enabled = false;
+            try
+            {
+                new Chart3DForm(f, minX, maxX, minY, maxY, stepX, stepY, calc, NameXTextbox.Text, NameYTextbox.Text, NameZTextbox.Text).ShowDialog();
+            }
+            catch
+            {
+                MessageBox.Show("cock");
+            }
+          //  button1.Enabled = false;
         }
     }
 }
