@@ -47,7 +47,7 @@ namespace _3DGraph
 
             _surfacePlotControl.Initialise(_configuration);
             Run();
-
+            _configuration.ZScale = 0.350;
          
             
 
@@ -74,6 +74,55 @@ namespace _3DGraph
             }
         }
 
+        private void CollapseButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void ScrollEvent(object sender, EventArgs e)
+        {
+            _configuration.Zoom = ZoomBar.Value;
+        }
+
+        private void CloseSettings_Click(object sender, EventArgs e)
+        {
+            OpenPanel.Visible = true;
+            SettingsPanel.Visible = false;
+        }
+
+
+
+        private void OpenButton_Click(object sender, EventArgs e)
+        {
+            SettingsPanel.Visible = true;
+            OpenPanel.Visible = false;
+            
+        }
+
+        private void ZScaleScroll(object sender, EventArgs e)
+        {
+            double value = ZScaleBar.Value;
+            _configuration.ZScale = value/1000;
+        }
+
+    
+
+        private void ResetButton_Click(object sender, EventArgs e)
+        {
+            _configuration.Zoom = 350;
+            _configuration.ZScale = 0.350;
+        }
+
+        private void ZLabelsScroll(object sender, EventArgs e)
+        {
+            _surfacePlotControl.SetData(srcData, gx, hx, Convert.ToInt32((hx - gx) / stepX) + 1, gy, hy, Convert.ToInt32((hy - gy) / stepY) + 1, zminlabel, zmaxlabel, ZLabelsBar.Value);
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
            // Run();
@@ -83,6 +132,7 @@ namespace _3DGraph
         {
             OpenControls.Wpf.SurfacePlot.Exports.ShowConfigurationDialog(_configuration);
             _configuration.Save(IConfigurationSerialiser);
+           
         }
 
         private void buttonCLose_Click(object sender, EventArgs e)
@@ -96,13 +146,13 @@ namespace _3DGraph
 
 
 
+        float zMax = float.MinValue;
+        float zMin = float.MaxValue;
+        float zminlabel, zmaxlabel;
+        List<List<float>> srcData = new List<List<float>>();
         private void Run()
         {
 
-            float zMax = float.MinValue;
-            float zMin = float.MaxValue;
-
-            List<List<float>> srcData = new List<List<float>>();
             for (float i = gx; i <= hx; i += stepX)
             {
                 //if (srcData.Count >= 50)
@@ -123,16 +173,19 @@ namespace _3DGraph
                 srcData.Add(list);
             }
             int zlabels = Convert.ToInt32(zMax - zMin) + 1;
-            float zminlabel = -zMax, zmaxlabel = zMax;
+            zminlabel = -zMax;
+            zmaxlabel = zMax;
             if (Math.Abs(zMin) > Math.Abs(zMax))
             {
                 zminlabel = zMin;
                 zmaxlabel = Math.Abs(zMin);
             }
             _surfacePlotControl.SetData(srcData, gx, hx, Convert.ToInt32((hx-gx)/stepX)+1, gy, hy, Convert.ToInt32((hy - gy) / stepY)+1, zminlabel, zmaxlabel, zlabels);
-            
-      //      _surfacePlotControl.XAxisTitle = "axis x";//nameX;
-       
+            ZLabelsBar.Maximum = zlabels;
+            _surfacePlotControl.XAxisTitle = nameX;
+            _surfacePlotControl.YAxisTitle = nameY;
+            _surfacePlotControl.ZAxisTitle = nameZ;
+
         }
         public string ParseString(string parsedString)
         {
@@ -144,7 +197,7 @@ namespace _3DGraph
             if (parsedString.Contains("TAN"))
                 parsedString = parsedString.Replace("TAN", "Tan");
             if (parsedString.Contains("COS"))
-                parsedString = parsedString.Replace("PI", "3.14");
+                parsedString = parsedString.Replace("PI", "Pi");
             if (parsedString.Contains("SQRT"))
                 parsedString = parsedString.Replace("SQRT", "Sqrt");
             if (parsedString.Contains("LOG"))
