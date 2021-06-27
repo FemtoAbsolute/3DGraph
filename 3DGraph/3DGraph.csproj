@@ -130,5 +130,17 @@
   <ItemGroup>
     <None Include="Resources\Open.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cube.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\yaxis.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zaxis.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\xaxis.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

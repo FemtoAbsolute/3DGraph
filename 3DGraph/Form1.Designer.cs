@@ -30,6 +30,7 @@ namespace _3DGraph
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.CloseButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -40,6 +41,12 @@ namespace _3DGraph
             this.label10 = new System.Windows.Forms.Label();
             this.ValuesOfFunction = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.NameZTextbox = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.NameYTextbox = new System.Windows.Forms.TextBox();
+            this.NameXTextbox = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -58,12 +65,6 @@ namespace _3DGraph
             this.label2 = new System.Windows.Forms.Label();
             this.Tabs = new System.Windows.Forms.TabControl();
             this.DragControl = new _3DGraph.DragControl();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.NameXTextbox = new System.Windows.Forms.TextBox();
-            this.NameYTextbox = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.NameZTextbox = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.DocumentTabs.SuspendLayout();
             this.FirstTab.SuspendLayout();
@@ -87,7 +88,7 @@ namespace _3DGraph
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(842, 33);
+            this.panel1.Size = new System.Drawing.Size(843, 32);
             this.panel1.TabIndex = 68;
             // 
             // CloseButton
@@ -139,7 +140,7 @@ namespace _3DGraph
             this.DocumentTabs.Location = new System.Drawing.Point(4, 29);
             this.DocumentTabs.Name = "DocumentTabs";
             this.DocumentTabs.Padding = new System.Windows.Forms.Padding(3);
-            this.DocumentTabs.Size = new System.Drawing.Size(834, 515);
+            this.DocumentTabs.Size = new System.Drawing.Size(834, 548);
             this.DocumentTabs.TabIndex = 2;
             this.DocumentTabs.Text = "Документация";
             // 
@@ -164,7 +165,7 @@ namespace _3DGraph
             this.FirstTab.Location = new System.Drawing.Point(4, 29);
             this.FirstTab.Name = "FirstTab";
             this.FirstTab.Padding = new System.Windows.Forms.Padding(3);
-            this.FirstTab.Size = new System.Drawing.Size(834, 522);
+            this.FirstTab.Size = new System.Drawing.Size(835, 497);
             this.FirstTab.TabIndex = 1;
             this.FirstTab.Text = "Ввод функции и таблица значений";
             // 
@@ -186,6 +187,15 @@ namespace _3DGraph
             this.ValuesOfFunction.AllowUserToDeleteRows = false;
             this.ValuesOfFunction.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(41)))), ((int)(((byte)(71)))));
             this.ValuesOfFunction.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.Format = "n3";
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ValuesOfFunction.DefaultCellStyle = dataGridViewCellStyle1;
             this.ValuesOfFunction.Location = new System.Drawing.Point(8, 203);
             this.ValuesOfFunction.Name = "ValuesOfFunction";
             this.ValuesOfFunction.ReadOnly = true;
@@ -229,6 +239,63 @@ namespace _3DGraph
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ввод функции и ограничений, накладываемых на аргументы";
             // 
+            // NameZTextbox
+            // 
+            this.NameZTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.NameZTextbox.Location = new System.Drawing.Point(635, 32);
+            this.NameZTextbox.Name = "NameZTextbox";
+            this.NameZTextbox.Size = new System.Drawing.Size(175, 31);
+            this.NameZTextbox.TabIndex = 15;
+            this.NameZTextbox.Text = "Ось Z";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label13.Location = new System.Drawing.Point(533, 34);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(100, 24);
+            this.label13.TabIndex = 14;
+            this.label13.Text = "Имя оси Z";
+            // 
+            // NameYTextbox
+            // 
+            this.NameYTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.NameYTextbox.Location = new System.Drawing.Point(635, 106);
+            this.NameYTextbox.Name = "NameYTextbox";
+            this.NameYTextbox.Size = new System.Drawing.Size(175, 31);
+            this.NameYTextbox.TabIndex = 6;
+            this.NameYTextbox.Text = "Ось Y";
+            // 
+            // NameXTextbox
+            // 
+            this.NameXTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.NameXTextbox.Location = new System.Drawing.Point(635, 69);
+            this.NameXTextbox.Name = "NameXTextbox";
+            this.NameXTextbox.Size = new System.Drawing.Size(175, 31);
+            this.NameXTextbox.TabIndex = 6;
+            this.NameXTextbox.Text = "Ось Х";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label11.Location = new System.Drawing.Point(533, 110);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(100, 24);
+            this.label11.TabIndex = 13;
+            this.label11.Text = "Имя оси Y";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label12.Location = new System.Drawing.Point(533, 70);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(100, 24);
+            this.label12.TabIndex = 12;
+            this.label12.Text = "Имя оси Х";
+            // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
@@ -255,7 +322,7 @@ namespace _3DGraph
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(177, 110);
+            this.label5.Location = new System.Drawing.Point(185, 110);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(75, 24);
             this.label5.TabIndex = 10;
@@ -286,7 +353,7 @@ namespace _3DGraph
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(359, 70);
+            this.label7.Location = new System.Drawing.Point(359, 73);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(75, 24);
             this.label7.TabIndex = 6;
@@ -320,7 +387,7 @@ namespace _3DGraph
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(177, 70);
+            this.label4.Location = new System.Drawing.Point(183, 73);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(77, 24);
             this.label4.TabIndex = 6;
@@ -371,13 +438,14 @@ namespace _3DGraph
             0,
             -2147483648});
             this.YMaxNumeric.Name = "YMaxNumeric";
-            this.YMaxNumeric.Size = new System.Drawing.Size(93, 31);
+            this.YMaxNumeric.Size = new System.Drawing.Size(99, 31);
             this.YMaxNumeric.TabIndex = 4;
             this.YMaxNumeric.Value = new decimal(new int[] {
             10,
             0,
             0,
             0});
+            this.YMaxNumeric.ValueChanged += new System.EventHandler(this.YMaxChanged);
             // 
             // XMaxNumeric
             // 
@@ -400,13 +468,14 @@ namespace _3DGraph
             0,
             -2147483648});
             this.XMaxNumeric.Name = "XMaxNumeric";
-            this.XMaxNumeric.Size = new System.Drawing.Size(93, 31);
+            this.XMaxNumeric.Size = new System.Drawing.Size(99, 31);
             this.XMaxNumeric.TabIndex = 4;
             this.XMaxNumeric.Value = new decimal(new int[] {
             10,
             0,
             0,
             0});
+            this.XMaxNumeric.ValueChanged += new System.EventHandler(this.XMaxChanged);
             // 
             // YMinNumeric
             // 
@@ -429,8 +498,9 @@ namespace _3DGraph
             0,
             -2147483648});
             this.YMinNumeric.Name = "YMinNumeric";
-            this.YMinNumeric.Size = new System.Drawing.Size(89, 31);
+            this.YMinNumeric.Size = new System.Drawing.Size(98, 31);
             this.YMinNumeric.TabIndex = 4;
+            this.YMinNumeric.ValueChanged += new System.EventHandler(this.YMinChanged);
             // 
             // XMinNumeric
             // 
@@ -453,8 +523,9 @@ namespace _3DGraph
             0,
             -2147483648});
             this.XMinNumeric.Name = "XMinNumeric";
-            this.XMinNumeric.Size = new System.Drawing.Size(89, 31);
+            this.XMinNumeric.Size = new System.Drawing.Size(98, 31);
             this.XMinNumeric.TabIndex = 4;
+            this.XMinNumeric.ValueChanged += new System.EventHandler(this.XMInValuechanged);
             // 
             // label3
             // 
@@ -491,85 +562,29 @@ namespace _3DGraph
             this.Tabs.Cursor = System.Windows.Forms.Cursors.Default;
             this.Tabs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Tabs.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Tabs.Location = new System.Drawing.Point(0, 33);
+            this.Tabs.Location = new System.Drawing.Point(0, 32);
             this.Tabs.Name = "Tabs";
             this.Tabs.SelectedIndex = 0;
             this.Tabs.ShowToolTips = true;
-            this.Tabs.Size = new System.Drawing.Size(842, 555);
+            this.Tabs.Size = new System.Drawing.Size(843, 530);
             this.Tabs.TabIndex = 70;
             // 
             // DragControl
             // 
             this.DragControl.selectControl = this.panel1;
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label11.Location = new System.Drawing.Point(533, 110);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(100, 24);
-            this.label11.TabIndex = 13;
-            this.label11.Text = "Имя оси Y";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label12.Location = new System.Drawing.Point(533, 70);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(100, 24);
-            this.label12.TabIndex = 12;
-            this.label12.Text = "Имя оси Х";
-            // 
-            // NameXTextbox
-            // 
-            this.NameXTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.NameXTextbox.Location = new System.Drawing.Point(635, 69);
-            this.NameXTextbox.Name = "NameXTextbox";
-            this.NameXTextbox.Size = new System.Drawing.Size(175, 31);
-            this.NameXTextbox.TabIndex = 6;
-            this.NameXTextbox.Text = "Ось Х";
-            // 
-            // NameYTextbox
-            // 
-            this.NameYTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.NameYTextbox.Location = new System.Drawing.Point(635, 106);
-            this.NameYTextbox.Name = "NameYTextbox";
-            this.NameYTextbox.Size = new System.Drawing.Size(175, 31);
-            this.NameYTextbox.TabIndex = 6;
-            this.NameYTextbox.Text = "Ось Y";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label13.Location = new System.Drawing.Point(533, 34);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(100, 24);
-            this.label13.TabIndex = 14;
-            this.label13.Text = "Имя оси Z";
-            // 
-            // NameZTextbox
-            // 
-            this.NameZTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.NameZTextbox.Location = new System.Drawing.Point(635, 32);
-            this.NameZTextbox.Name = "NameZTextbox";
-            this.NameZTextbox.Size = new System.Drawing.Size(175, 31);
-            this.NameZTextbox.TabIndex = 15;
-            this.NameZTextbox.Text = "Ось Z";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(842, 588);
+            this.ClientSize = new System.Drawing.Size(843, 562);
             this.Controls.Add(this.Tabs);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Добро пожаловать";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.DocumentTabs.ResumeLayout(false);

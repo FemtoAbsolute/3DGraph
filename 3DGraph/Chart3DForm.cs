@@ -47,7 +47,12 @@ namespace _3DGraph
 
             _surfacePlotControl.Initialise(_configuration);
             Run();
-            _configuration.ZScale = 0.350;
+
+
+            _configuration.ZScale = 0.365;
+            _configuration.BackgroundColour = "Black";
+            _configuration.ShadingAlgorithm = OpenControls.Wpf.SurfacePlot.Model.ShadingAlgorithm.Dynamic;
+         
          
             
 
@@ -76,11 +81,14 @@ namespace _3DGraph
 
         private void CollapseButton_Click(object sender, EventArgs e)
         {
+            _configuration.Save(IConfigurationSerialiser);
             this.Close();
+
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
         {
+
             this.WindowState = FormWindowState.Minimized;
         }
 
@@ -114,13 +122,44 @@ namespace _3DGraph
 
         private void ResetButton_Click(object sender, EventArgs e)
         {
+            _configuration.ViewProjection = OpenControls.Wpf.SurfacePlot.Model.ViewProjection.ThreeDimensional;
             _configuration.Zoom = 350;
             _configuration.ZScale = 0.350;
+            _configuration.ShowScatterPlot = false;
+            _configuration.ShowShading = true;
+            _configuration.ShowGrid = true;
+            _configuration.ShadingMethod = OpenControls.Wpf.SurfacePlot.Model.ShadingMethod.Interpolated;
+            _configuration.LabelFontSize = 24;
+            CurrentSettings();
+
+        }
+
+        void CurrentSettings()
+        {
+            ZScaleBar.Value = Convert.ToInt32(_configuration.ZScale*1000);
+            if (_configuration.ShadingMethod == OpenControls.Wpf.SurfacePlot.Model.ShadingMethod.Interpolated)
+                InterpolatedRadio.Checked = true;
+            else
+                CorRadio.Checked = true;
+            XLabelsValue.Value = XLabelsValue.Maximum;
+            YLabelsValue.Value = YLabelsValue.Maximum;
+            ZLabelsBar.Value = ZLabelsBar.Maximum;
+            ZoomBar.Value = _configuration.Zoom;
+            FontTrackbar.Value = _configuration.LabelFontSize;
+            if (_configuration.ShowGrid == true)
+                GridChecked.Checked = true;
+            else
+                GridChecked.Checked = false;
+            if (_configuration.ShowScatterPlot == true)
+                ScatterCheck.Checked = true;
+            else
+                ScatterCheck.Checked = false;
+            
         }
 
         private void ZLabelsScroll(object sender, EventArgs e)
         {
-            _surfacePlotControl.SetData(srcData, gx, hx, Convert.ToInt32((hx - gx) / stepX) + 1, gy, hy, Convert.ToInt32((hy - gy) / stepY) + 1, zminlabel, zmaxlabel, ZLabelsBar.Value);
+            _surfacePlotControl.SetData(srcData, gx, hx, XLabelsValue.Value, gy, hy, YLabelsValue.Value, zminlabel, zmaxlabel, ZLabelsBar.Value);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -141,6 +180,68 @@ namespace _3DGraph
         }
 
         OpenControls.Wpf.SurfacePlot.SurfacePlotControl _surfacePlotControl = new OpenControls.Wpf.SurfacePlot.SurfacePlotControl();
+
+        private void FontTrackScroll(object sender, EventArgs e)
+        {
+            _configuration.LabelFontSize = FontTrackbar.Value;
+        }
+
+        private void YLabelsScroll(object sender, EventArgs e)
+        {
+            _surfacePlotControl.SetData(srcData, gx, hx, XLabelsValue.Value, gy, hy, YLabelsValue.Value, zminlabel, zmaxlabel, ZLabelsBar.Value);
+        }
+
+        private void GridCheckedChanged(object sender, EventArgs e)
+        {
+            if (GridChecked.Checked == true)
+                _configuration.ShowGrid = true;
+            else
+                _configuration.ShowGrid = false;
+        }
+
+        private void ScatterCheckedChanged(object sender, EventArgs e)
+        {
+            if (ScatterCheck.Checked == true)
+            {
+                _configuration.ShowScatterPlot = true;
+                _configuration.ShowShading = false;
+            }
+            else
+            {
+                _configuration.ShowScatterPlot = false;
+                _configuration.ShowShading = true;
+            }
+        }
+
+        private void RadioCheckedChanged(object sender, EventArgs e)
+        {
+            if (InterpolatedRadio.Checked == true)
+                _configuration.ShadingMethod = OpenControls.Wpf.SurfacePlot.Model.ShadingMethod.Interpolated;
+            if (CorRadio.Checked == true)
+                _configuration.ShadingMethod = OpenControls.Wpf.SurfacePlot.Model.ShadingMethod.Coarse;
+
+        }
+
+        private void XAxisOrtoClick(object sender, EventArgs e)
+        {
+            _configuration.ViewProjection = OpenControls.Wpf.SurfacePlot.Model.ViewProjection.Orthographic_Side;
+        }
+
+        private void YAxisOrtoClick(object sender, EventArgs e)
+        {
+            _configuration.ViewProjection = OpenControls.Wpf.SurfacePlot.Model.ViewProjection.Orthographic_Front;
+        }
+
+        private void ZAxisOrtoClick(object sender, EventArgs e)
+        {
+            _configuration.ViewProjection = OpenControls.Wpf.SurfacePlot.Model.ViewProjection.BirdsEye_0;
+        }
+
+        private void Orto3DClick(object sender, EventArgs e)
+        {
+            _configuration.ViewProjection = OpenControls.Wpf.SurfacePlot.Model.ViewProjection.ThreeDimensional;
+        }
+
         OpenControls.Wpf.SurfacePlot.Model.Configuration _configuration;
         private OpenControls.Wpf.Serialisation.IConfigurationSerialiser IConfigurationSerialiser;
 
@@ -173,6 +274,9 @@ namespace _3DGraph
                 srcData.Add(list);
             }
             int zlabels = Convert.ToInt32(zMax - zMin) + 1;
+            int ylabels = Convert.ToInt32((hy - gy) / stepY) + 1;
+            int xlabels = Convert.ToInt32((hx - gx) / stepX) + 1;
+
             zminlabel = -zMax;
             zmaxlabel = zMax;
             if (Math.Abs(zMin) > Math.Abs(zMax))
@@ -180,11 +284,30 @@ namespace _3DGraph
                 zminlabel = zMin;
                 zmaxlabel = Math.Abs(zMin);
             }
-            _surfacePlotControl.SetData(srcData, gx, hx, Convert.ToInt32((hx-gx)/stepX)+1, gy, hy, Convert.ToInt32((hy - gy) / stepY)+1, zminlabel, zmaxlabel, zlabels);
+            _surfacePlotControl.SetData(srcData, gx, hx, xlabels, gy, hy, ylabels, zminlabel, zmaxlabel, zlabels);
             ZLabelsBar.Maximum = zlabels;
+
+            if (zlabels >= 30)
+                ZLabelsBar.Minimum = zlabels / 10;
+            else
+                ZLabelsBar.Minimum = zlabels / 2;
+
+            XLabelsValue.Maximum = xlabels;
+            if (xlabels >= 30)
+                XLabelsValue.Minimum = xlabels / 10;
+            else
+                XLabelsValue.Minimum = xlabels / 2;
+
+            YLabelsValue.Maximum = ylabels;
+            if (ylabels >= 30)
+                YLabelsValue.Minimum = ylabels / 10;
+            else
+                YLabelsValue.Minimum = ylabels / 2;
+
             _surfacePlotControl.XAxisTitle = nameX;
             _surfacePlotControl.YAxisTitle = nameY;
             _surfacePlotControl.ZAxisTitle = nameZ;
+            CurrentSettings();
 
         }
         public string ParseString(string parsedString)

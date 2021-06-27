@@ -201,5 +201,30 @@ namespace _3DGraph
             }
           //  button1.Enabled = false;
         }
+
+        private void XMInValuechanged(object sender, EventArgs e)
+        {
+            XMaxNumeric.Minimum = XMinNumeric.Value + DeltaXNumeric.Value;
+            XMinNumeric.Maximum = XMaxNumeric.Value - DeltaXNumeric.Value;
+
+        }
+
+        private void XMaxChanged(object sender, EventArgs e)
+        {
+            XMaxNumeric.Minimum = XMinNumeric.Value + DeltaXNumeric.Value;
+            XMinNumeric.Maximum = XMaxNumeric.Value - DeltaXNumeric.Value;
+        }
+
+        private void YMinChanged(object sender, EventArgs e)
+        {
+            YMaxNumeric.Minimum = YMinNumeric.Value + DeltaYNumeric.Value;
+            YMinNumeric.Maximum = YMaxNumeric.Value - DeltaYNumeric.Value;
+        }
+
+        private void YMaxChanged(object sender, EventArgs e)
+        {
+            YMaxNumeric.Minimum = YMinNumeric.Value + DeltaYNumeric.Value;
+            YMinNumeric.Maximum = YMaxNumeric.Value - DeltaYNumeric.Value;
+        }
     }
 }
